@@ -1,7 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:whoscore/screens/homescreen.dart';
 import 'package:whoscore/screens/onboarding_screen.dart';
 
-void main()=>runApp(WhoScore());
+bool? seenOnBoardingScreen;
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  //to show onboardscreen once
+  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  final SharedPreferences prefs = await _prefs;
+  seenOnBoardingScreen = prefs.getBool('seenOnBoardingScreen') ?? false;
+
+  runApp(WhoScore());
+}
 
 class WhoScore extends StatelessWidget {
   const WhoScore({super.key});
@@ -10,9 +22,8 @@ class WhoScore extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: OnBoardingScreen(),
-      title: 'WhoSCore',
-
+      home: seenOnBoardingScreen == true ? HomeScreen() : OnBoardingScreen(),
+      title: 'WhoScore',
     );
   }
 }
