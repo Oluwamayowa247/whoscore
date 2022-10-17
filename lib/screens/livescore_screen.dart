@@ -15,7 +15,7 @@ class _LiveScoreScreenState extends State<LiveScoreScreen> {
   Widget build(BuildContext context) {
     return SizedBox(
         width: SizeConfig.screenWidth,
-        height: 1000,
+        height: 600,
         child: TitleScrollNavigation(
           barStyle: const TitleNavigationBarStyle(
               spaceBetween: 30,
@@ -31,7 +31,7 @@ class _LiveScoreScreenState extends State<LiveScoreScreen> {
           ],
           pages: [
             Container(
-              height: 100,
+              height: 200,
               color: Colors.blue[50],
               child: ListView.builder(itemBuilder: ((context, index) {
                 return Column(
