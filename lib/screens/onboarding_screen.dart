@@ -6,7 +6,6 @@ import 'package:whoscore/main.dart';
 import 'package:whoscore/model/onboardingmodel.dart';
 import 'package:whoscore/screens/homescreen.dart';
 
-
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});
 
@@ -26,7 +25,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
   @override
   void initState() {
-    
     super.initState();
     setSeenOnBoardingScreen();
   }
