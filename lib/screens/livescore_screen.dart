@@ -1,81 +1,95 @@
-import 'package:flutter/material.dart';
-import 'package:scroll_navigation/misc/navigation_helpers.dart';
-import 'package:scroll_navigation/navigation/title_scroll_navigation.dart';
-import 'package:whoscore/sizeconfig/size_config.dart';
+import 'dart:convert';
 
-class LiveScoreScreen extends StatefulWidget {
-  const LiveScoreScreen({super.key});
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+class MatchView extends StatefulWidget {
+  const MatchView({super.key});
 
   @override
-  State<LiveScoreScreen> createState() => _LiveScoreScreenState();
+  State<MatchView> createState() => _MatchViewState();
 }
 
-class _LiveScoreScreenState extends State<LiveScoreScreen> {
+class _MatchViewState extends State<MatchView> {
+  List scores = [];
+
+  fetchScores() async {
+    http.Response response = await http.get(
+      Uri.parse('https://whoscore-backend.herokuapp.com/livescores'),
+    );
+    setState(() {
+      scores = jsonDecode(response.body);
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    fetchScores();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-        width: SizeConfig.screenWidth,
-        height: 600,
-        child: TitleScrollNavigation(
-          barStyle: const TitleNavigationBarStyle(
-              spaceBetween: 30,
-              activeColor: Colors.black,
-              deactiveColor: Colors.grey,
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17)),
-          titles: const [
-            "Premier League",
-            "La-Liga",
-            "Ligue 1",
-            "Serie A",
-            "Nacional",
-          ],
-          pages: [
-            Container(
-              height: 200,
-              color: Colors.blue[50],
-              child: ListView.builder(itemBuilder: ((context, index) {
-                return Column(
-                  children: [
-                    Text(
-                      'Mayor is mad',
-                      style: TextStyle(color: Colors.black),
-                    ),
-                  ],
+    return Container(
+      height: 500,
+      child: scores == null
+          ? Center(
+              child: CircularProgressIndicator(
+                color: Color.fromRGBO(0, 0, 0, 1),
+              ),
+            )
+          : ListView.builder(
+              itemCount: scores.length,
+              itemBuilder: (((context, index) {
+                return Container(
+                  height: 80,
+                  width: 40,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.grey.shade600,
+                            blurRadius: 10,
+                            offset: const Offset(0, 15),
+                            blurStyle: BlurStyle.outer),
+                      ]),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(top: 10, bottom: 5, left: 10),
+                        child: Image.asset(
+                          'lib/assets/images/football.png',
+                          width: 30,
+                          height: 40,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(top: 30.0),
+                            child: Text(
+                              scores[index]['awayTeam'],
+                              style: TextStyle(
+                                fontSize: 15,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                      
+                      Text(scores[index]['currentMatchTime']),
+                      // Text(scores[index]['competition']),
+                      Text(scores[index]['gameScore'])
+                    ],
+                  ),
                 );
               })),
             ),
-            Container(
-              height: 100,
-              color: Colors.red[50],
-            ),
-            Container(height: 100, color: Colors.green[50]),
-            Container(height: 100, color: Colors.purple[50]),
-            Container(height: 100, color: Colors.yellow[50]),
-          ],
-        ));
+    );
   }
 }
-
-// return Padding(
-//   padding: const EdgeInsets.all(15.0),
-//   child: Container(
-//     height: 500,
-//     child: ListView.builder(
-//         itemCount: 50,
-//         itemBuilder: ((context, index) {
-//           return Container(
-//             height: 100,
-//             width: SizeConfig.screenWidth,
-//             decoration: BoxDecoration(
-//                 borderRadius: BorderRadius.circular(10),
-//                 boxShadow: [
-//                   BoxShadow(
-//                       color: Colors.grey.shade400,
-//                       blurRadius: 10,
-//                       offset: Offset(0, 15),
-//                       blurStyle: BlurStyle.outer),
-//                 ]),
-//           );
-//         })),
-//   ),
-// );
