@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:whoscore/model/sports_category_model.dart';
 import 'package:whoscore/screens/bottom_nav_bar.dart';
 import 'package:whoscore/screens/dateview.dart';
-import 'package:whoscore/screens/livescore_screen.dart';
-
+import 'package:whoscore/screens/matchscoreview.dart';
 import 'package:whoscore/sizeconfig/size_config.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -104,7 +103,10 @@ class HomeScreen extends StatelessWidget {
                         fontWeight: FontWeight.w800),
                   ),
                 ),
-                LiveScoreScreen()
+                // MatchScoreView()
+                //  MatchView()
+                // MatchView()
+                // LiveScoreScreen()
               ],
             ),
           ),
