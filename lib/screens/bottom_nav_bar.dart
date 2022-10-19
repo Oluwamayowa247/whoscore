@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whoscore/model/bottom_bar_model.dart';
+import 'package:whoscore/screens/ticketidpage.dart';
 
 class BottomNavBar extends StatelessWidget {
   const BottomNavBar({super.key});
@@ -42,7 +43,10 @@ class BottomNavBar extends StatelessWidget {
                   color: Colors.white,
                   size: 30,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => TicketIDPage()));
+                },
               ),
               iconText: 'Ticket ID'),
           BottomBarModel(
