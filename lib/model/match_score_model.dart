@@ -1,9 +1,6 @@
-import 'package:flutter/material.dart';
-
 class MatchScoreModel {
-  final String awayTeam, homeTeam, competition, currentMatchTime, gameScore;
-  Image homeImg, awayImg;
+  final String awayTeam, homeTeam, competition, gameScore, currentMatchTime;
 
- MatchScoreModel(this.awayTeam, this.homeTeam, this.competition, this.currentMatchTime, this.gameScore, this.homeImg, this.awayImg);
-
+  MatchScoreModel(this.awayTeam, this.homeTeam, this.competition,
+      this.gameScore, this.currentMatchTime);
 }

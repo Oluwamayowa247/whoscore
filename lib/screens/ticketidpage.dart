@@ -148,12 +148,12 @@ class _TicketIDPageState extends State<TicketIDPage> {
                   child: TitleScrollNavigation(
                     bodyStyle: NavigationBodyStyle(),
                     barStyle: TitleNavigationBarStyle(
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize:15),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                       padding: EdgeInsets.symmetric(horizontal: 40.0),
                       activeColor: Colors.black,
                       background: Colors.white,
                       spaceBetween: 20,
-                      
                     ),
                     titles: [
                       "Ticket Status",
