@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:whoscore/model/match_score_model.dart';
@@ -42,7 +41,7 @@ class _MatchViewState extends State<MatchView> {
             future: getScores(),
             builder: ((context, snapshot) {
               if (snapshot.data == null) {
-                return Center(
+                return const Center(
                   child: Text('Loading'),
                 );
               } else {
@@ -50,14 +49,70 @@ class _MatchViewState extends State<MatchView> {
                 return ListView.builder(
                   itemCount: data.length,
                   itemBuilder: ((context, index) {
-                    return Card(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                           Text(data[index].awayTeam,),
-                           Text(data[index].gameScore),
-                           Text(data[index].homeTeam)
-                        ],
+                    return Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Card(
+                        shadowColor: Colors.greenAccent,
+                        color: Colors.grey.shade100,
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              right: 10, left: 10, top: 10, bottom: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Column(
+                                children: [
+                                  Image.asset(
+                                    'lib/assets/images/barcelona.png',
+                                    height: 30,
+                                    width: 20,
+                                  ),
+                                  Text(
+                                    data[index].awayTeam,
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        overflow: TextOverflow.clip),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                              
+                                children: [
+                                  Text(
+                                    data[index].currentMatchTime,
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w700),
+                                  ),
+                                  SizedBox(
+                                    height: 12,
+                                  ),
+                                  Text(
+                                    data[index].gameScore,
+                                    style: TextStyle(
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  Image.asset(
+                                    'lib/assets/images/chelsea.png',
+                                    height: 30,
+                                    width: 20,
+                                  ),
+                                  Text(
+                                    data[index].homeTeam,
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        overflow: TextOverflow.fade),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                     );
                   }),
