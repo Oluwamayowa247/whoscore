@@ -29,7 +29,7 @@ List<SportsCategoryModel> sportsCategory = [
             height: 50,
             width: 30,
           )),
-      sportsName: 'BasketBall'),
+      sportsName: 'BasketBall', ),
   SportsCategoryModel(
       sportIcon: IconButton(
           onPressed: () {},

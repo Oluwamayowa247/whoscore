@@ -20,13 +20,13 @@ class CustomTextField extends StatelessWidget {
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
-            borderSide: const BorderSide(color: Colors.black, width: 3),
+            borderSide: const BorderSide(color:Color(0xffF5F5FA), width: 3),
           ),
           
           contentPadding:
               const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
           filled: true,
-          fillColor: const Color(0xffF5F5FA),
+          fillColor: Colors.white,
           hintText: customHintText,
           
           hintStyle:
