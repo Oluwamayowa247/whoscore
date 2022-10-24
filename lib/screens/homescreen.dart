@@ -3,6 +3,8 @@ import 'package:whoscore/model/sports_category_model.dart';
 import 'package:whoscore/screens/bottom_nav_bar.dart';
 import 'package:whoscore/screens/dateview.dart';
 import 'package:whoscore/screens/matchview.dart';
+import 'package:whoscore/screens/ticketidpage.dart';
+import 'package:whoscore/screens/ticketview.dart';
 import 'package:whoscore/sizeconfig/size_config.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -13,34 +15,54 @@ class HomeScreen extends StatelessWidget {
     SizeConfig().init(context);
     return SafeArea(
       child: Scaffold(
-          appBar: AppBar(
-            title: const Text(
-              'WhoScore?',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontFamily: 'FuzzyBubbles',
-                  fontSize: 22,
-                  fontWeight: FontWeight.w900),
-            ),
-            elevation: 0,
-            backgroundColor: Colors.white,
-            actions: const [
-              Padding(
-                padding: EdgeInsets.only(right: 20.0),
-                child: Icon(
-                  Icons.search_sharp,
-                  color: Colors.black,
-                  size: 25,
-                ),
-              )
-            ],
-          ),
           body: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                SizedBox(
+                  width: SizeConfig.screenWidth,
+                  height: 50,
+                  child: Row(
+                    children: [
+                      TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          'Home',
+                          style: TextStyle(
+                            fontFamily: 'Quicksand',
+                            fontSize: 15,
+                            fontWeight: FontWeight.w600,
+                            color: Color.fromARGB(255, 202, 202, 205),
+                          ),
+                        ),
+                      ),
+                      VerticalDivider(
+                        color: Color.fromARGB(255, 202, 202, 205),
+                        width: 10,
+                        thickness: 2,
+                      ),
+                      TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          'Watch',
+                          style: TextStyle(
+                            fontFamily: 'Quicksand',
+                            fontSize: 15,
+                            fontWeight: FontWeight.w600,
+                            color: Color.fromARGB(255, 202, 202, 205),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+             
                 const SizedBox(
                   height: 10,
+                ),
+                TicketView(),
+                SizedBox(
+                  height: 30,
                 ),
                 Container(
                   width: SizeConfig.screenWidth!,
@@ -69,9 +91,9 @@ class HomeScreen extends StatelessWidget {
                                 Text(
                                   sportsCategory[index].sportsName,
                                   style: const TextStyle(
-                                      fontFamily: 'FuzzyBubbles',
+                                      fontFamily: 'Quicksand',
                                       fontSize: 15,
-                                      fontWeight: FontWeight.w800),
+                                      fontWeight: FontWeight.w700),
                                 ),
                                 const SizedBox(
                                   height: 5,
@@ -83,14 +105,14 @@ class HomeScreen extends StatelessWidget {
                         );
                       })),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
                 const DateView(),
                 const SizedBox(
                   height: 15,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 const Padding(
@@ -98,7 +120,7 @@ class HomeScreen extends StatelessWidget {
                   child: Text(
                     'Popular Competitions',
                     style: TextStyle(
-                        fontFamily: 'FuzzyBubbles',
+                        fontFamily: 'Quicksand',
                         fontSize: 20,
                         fontWeight: FontWeight.w800),
                   ),

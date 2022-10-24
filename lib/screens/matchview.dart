@@ -70,13 +70,12 @@ class _MatchViewState extends State<MatchView> {
                                   Text(
                                     data[index].awayTeam,
                                     style: TextStyle(
-                                        fontSize: 12,
-                                        overflow: TextOverflow.clip),
+                                      fontSize: 12,
+                                    ),
                                   ),
                                 ],
                               ),
                               Column(
-                              
                                 children: [
                                   Text(
                                     data[index].currentMatchTime,
@@ -90,7 +89,7 @@ class _MatchViewState extends State<MatchView> {
                                   Text(
                                     data[index].gameScore,
                                     style: TextStyle(
-                                        fontSize: 10,
+                                        fontSize: 13,
                                         fontWeight: FontWeight.w600),
                                   ),
                                 ],
@@ -105,8 +104,8 @@ class _MatchViewState extends State<MatchView> {
                                   Text(
                                     data[index].homeTeam,
                                     style: TextStyle(
-                                        fontSize: 12,
-                                        overflow: TextOverflow.fade),
+                                      fontSize: 12,
+                                    ),
                                   ),
                                 ],
                               ),

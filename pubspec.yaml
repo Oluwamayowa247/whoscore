@@ -86,10 +86,10 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: FuzzyBubbles
+    - family: Quicksand
       fonts:
-        - asset: lib/assets/fonts/FuzzyBubbles-Bold.ttf
-        - asset: lib/assets/fonts/FuzzyBubbles-Regular.ttf
+        - asset: lib/assets/fonts/Quicksand-Bold.ttf
+        - asset: lib/assets/fonts/Quicksand-Regular.ttf
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:
