@@ -64,7 +64,7 @@ class _TicketViewState extends State<TicketView> {
                       height: 30,
                     ),
                     Card(
-                      color: Color(0xffF5F6FA),
+                      color: Colors.white,
                       child: DropdownButton(
                           focusColor: Color(0xffF5F6FA),
                           items: <String>[
@@ -98,6 +98,9 @@ class _TicketViewState extends State<TicketView> {
                             });
                           }),
                     ),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Container(
                       width: SizeConfig.screenWidth! * 0.74,
                       height: 40,
@@ -114,6 +117,30 @@ class _TicketViewState extends State<TicketView> {
                         ),
                       ),
                     ),
+                    SizedBox(
+                      height: 50,
+                    ),
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(9))),
+                        backgroundColor:
+                            const MaterialStatePropertyAll(Colors.black),
+                        minimumSize: const MaterialStatePropertyAll(
+                          Size(300, 50),
+                        ),
+                      ),
+                      onPressed: () {},
+                      child: Text(
+                        'Load games',
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontFamily: 'Quicksand',
+                            fontWeight: FontWeight.w700),
+                      ),
+                    ),
+                    
+                   
                   ],
                 ),
               ),
