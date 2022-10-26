@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:whoscore/screens/dateview.dart';
+import 'package:whoscore/screens/livescorescreen.dart';
+// import 'package:tabbar/tabbar.dart';
 import 'package:whoscore/sizeconfig/size_config.dart';
 
 import '../widgets/customtextfield.dart';
@@ -13,6 +16,7 @@ class TicketView extends StatefulWidget {
 class _TicketViewState extends State<TicketView> {
   late final TextEditingController _ticketIdController =
       TextEditingController();
+  late final PageController _pageController = PageController();
   late String _bettingCompany = '';
   @override
   Widget build(BuildContext context) {
@@ -25,9 +29,9 @@ class _TicketViewState extends State<TicketView> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 20, right: 15, left: 15),
+              padding: const EdgeInsets.only(top: 15, right: 15, left: 15),
               child: Container(
-                height: SizeConfig.screenHeight! * 0.6,
+                height: SizeConfig.screenHeight! * 0.52,
                 width: SizeConfig.screenWidth,
                 decoration: BoxDecoration(
                     color: Colors.white,
@@ -46,7 +50,7 @@ class _TicketViewState extends State<TicketView> {
                             color: Colors.black,
                             fontFamily: 'Quicksand',
                             fontWeight: FontWeight.w700,
-                            fontSize: 28),
+                            fontSize: 25),
                       ),
                     ),
                     const SizedBox(
@@ -98,8 +102,8 @@ class _TicketViewState extends State<TicketView> {
                             });
                           }),
                     ),
-                    SizedBox(
-                      height: 10,
+                    const SizedBox(
+                      height: 20,
                     ),
                     Container(
                       width: SizeConfig.screenWidth! * 0.74,
@@ -112,13 +116,13 @@ class _TicketViewState extends State<TicketView> {
                       child: Text(
                         _bettingCompany,
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 18,
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: 50,
+                    const SizedBox(
+                      height: 30,
                     ),
                     ElevatedButton(
                       style: ButtonStyle(
@@ -127,22 +131,88 @@ class _TicketViewState extends State<TicketView> {
                         backgroundColor:
                             const MaterialStatePropertyAll(Colors.black),
                         minimumSize: const MaterialStatePropertyAll(
-                          Size(300, 50),
+                          Size(280, 50),
                         ),
                       ),
                       onPressed: () {},
-                      child: Text(
+                      child: const Text(
                         'Load games',
                         style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 18,
                             fontFamily: 'Quicksand',
                             fontWeight: FontWeight.w700),
                       ),
                     ),
-                    
-                   
                   ],
                 ),
+              ),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Container(
+              decoration: const BoxDecoration(color: Colors.white),
+              width: SizeConfig.screenWidth! * 0.92,
+              height: 720,
+              child: DefaultTabController(
+                length: 3,
+                child: Column(
+                  children: [
+                    TabBar(
+                      labelStyle: TextStyle(
+                        fontFamily: 'Quicksand',
+                        fontSize: 13,
+                        fontWeight: FontWeight.w700,
+                      ),
+                      labelColor: Colors.black,
+                      unselectedLabelColor: Color.fromARGB(255, 202, 202, 205),
+                      indicatorColor: Colors.grey,
+                      // indicator: ,
+
+                      tabs: [
+                        Tab(
+                          text: 'Livescore',
+                        ),
+                        Tab(
+                          text: 'Ticket Status',
+                        ),
+                        Tab(
+                          text: 'Ticket History',
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      child: Container(
+                        width: SizeConfig.screenWidth! * 0.95,
+                        height: SizeConfig.screenHeight! * 0.88,
+                        child: TabBarView(children: [
+                          Container(
+                            height: 200,
+                            width: 50,
+                            color: Colors.white,
+                            child: Column(
+                              children: [
+                                DateView(),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            height: 200,
+                            width: 50,
+                            color: Colors.red,
+                          ),
+                          Container(
+                            height: 200,
+                            width: 50,
+                            color: Colors.yellow,
+                          ),
+                        ]),
+                      ),
+                    ),
+                  ],
+                ),
+
+                // ])
               ),
             ),
           ],
@@ -151,3 +221,16 @@ class _TicketViewState extends State<TicketView> {
     );
   }
 }
+
+ // TabbarHeader(controller: _pageController, tabs: [
+                      //   Tab(
+                      //     child: Text('Ticket Status'),
+                      //   ),
+                      //   Tab(
+                      //     child: Text('Ticket History'),
+                      //   ),
+                      // ]),
+                      // TabbarContent(controller: _pageController, children: [
+                      //   Container(color: Colors.yellow),
+                      //   Container(color: Colors.red),
+                      //   Container(color: Colors.purple),
