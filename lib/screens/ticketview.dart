@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:whoscore/screens/dateview.dart';
-import 'package:whoscore/screens/livescorescreen.dart';
-// import 'package:tabbar/tabbar.dart';
+import 'package:whoscore/screens/matchview.dart';
+import 'package:whoscore/screens/sportscategory.dart';
 import 'package:whoscore/sizeconfig/size_config.dart';
-
 import '../widgets/customtextfield.dart';
 
 class TicketView extends StatefulWidget {
@@ -16,7 +15,7 @@ class TicketView extends StatefulWidget {
 class _TicketViewState extends State<TicketView> {
   late final TextEditingController _ticketIdController =
       TextEditingController();
-  late final PageController _pageController = PageController();
+  late final PageController _ticketPageController = PageController();
   late String _bettingCompany = '';
   @override
   Widget build(BuildContext context) {
@@ -103,7 +102,7 @@ class _TicketViewState extends State<TicketView> {
                           }),
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
                     Container(
                       width: SizeConfig.screenWidth! * 0.74,
@@ -152,13 +151,13 @@ class _TicketViewState extends State<TicketView> {
             ),
             Container(
               decoration: const BoxDecoration(color: Colors.white),
-              width: SizeConfig.screenWidth! * 0.92,
-              height: 720,
+              width: SizeConfig.screenWidth! * 0.98,
+              height: 740,
               child: DefaultTabController(
                 length: 3,
                 child: Column(
                   children: [
-                    TabBar(
+                    const TabBar(
                       labelStyle: TextStyle(
                         fontFamily: 'Quicksand',
                         fontSize: 13,
@@ -174,25 +173,34 @@ class _TicketViewState extends State<TicketView> {
                           text: 'Livescore',
                         ),
                         Tab(
-                          text: 'Ticket Status',
+                          text: 'Betting History',
                         ),
                         Tab(
-                          text: 'Ticket History',
+                          text: 'Explore',
                         ),
                       ],
                     ),
                     SizedBox(
-                      child: Container(
-                        width: SizeConfig.screenWidth! * 0.95,
-                        height: SizeConfig.screenHeight! * 0.88,
+                      child: SizedBox(
+                        width: SizeConfig.screenWidth! * 0.96,
+                        height: SizeConfig.screenHeight! * 0.91,
                         child: TabBarView(children: [
                           Container(
-                            height: 200,
-                            width: 50,
                             color: Colors.white,
                             child: Column(
                               children: [
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                SportsCategory(),
+                                SizedBox(
+                                  height: 5,
+                                ),
                                 DateView(),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                MatchView()
                               ],
                             ),
                           ),

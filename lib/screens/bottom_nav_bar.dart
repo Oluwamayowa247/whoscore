@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whoscore/model/bottom_bar_model.dart';
-import 'package:whoscore/screens/ticketidpage.dart';
+// import 'package:whoscore/screens/ticketidpage.dart';
 import 'package:whoscore/screens/ticketview.dart';
 
 class BottomNavBar extends StatelessWidget {
