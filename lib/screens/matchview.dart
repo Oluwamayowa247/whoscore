@@ -34,7 +34,7 @@ class _MatchViewState extends State<MatchView> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: 500,
+        height: SizeConfig.screenHeight!*0.65,
         width: SizeConfig.screenWidth,
         child: Card(
           child: FutureBuilder(

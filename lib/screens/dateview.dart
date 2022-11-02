@@ -13,29 +13,29 @@ class DateView extends StatefulWidget {
 class _DateViewState extends State<DateView> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 15.0, left: 15.0),
-      child: Container(
-        height: 100,
-        width: SizeConfig.screenWidth,
-        color: Colors.grey.shade200,
-        child: Padding(
-          padding: const EdgeInsets.only(left: 12.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              DatePicker(
-                DateTime.now(),
-                initialSelectedDate: DateTime.now(),
-                selectionColor: Colors.black,
-                selectedTextColor: Colors.white,
-                onDateChange: (selectedDate) {
-                  selectedDate == DateTime.now();
-                },
-                monthTextStyle: const TextStyle(fontSize: 14),
-              )
-            ],
-          ),
+    return Container(
+      height: 80,
+      width: SizeConfig.screenWidth! * 0.95,
+      color: Colors.grey.shade200,
+      child: Padding(
+        padding: const EdgeInsets.only(
+          left: 5.0,
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            DatePicker(
+              DateTime.now(),
+              initialSelectedDate: DateTime.now(),
+              selectionColor: Colors.black,
+              selectedTextColor: Colors.white,
+              onDateChange: (selectedDate) {
+                selectedDate == DateTime.now();
+              },
+              monthTextStyle:
+                  const TextStyle(fontSize: 10, fontWeight: FontWeight.w600),
+            )
+          ],
         ),
       ),
     );
