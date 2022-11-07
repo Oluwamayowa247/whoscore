@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:whoscore/provider/matchscore_provider.dart';
 
 import 'package:whoscore/screens/homescreen.dart';
 import 'package:whoscore/screens/onboarding_screen.dart';
@@ -22,10 +24,13 @@ class WhoScore extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: seenOnBoardingScreen == true ? HomeScreen() : OnBoardingScreen(),
-      title: 'WhoScore',
+    return ChangeNotifierProvider(
+      create: (context) => MatchScoreProvider(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: seenOnBoardingScreen == true ? HomeScreen() : OnBoardingScreen(),
+        title: 'WhoScore',
+      ),
     );
   }
 }

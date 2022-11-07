@@ -1,6 +1,8 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:whoscore/screens/ticketview.dart';
 import 'package:whoscore/sizeconfig/size_config.dart';
+import 'package:http/http.dart' as http;
+import '../model/ticket_details_model.dart';
 
 class TicketDetailsPage extends StatefulWidget {
   const TicketDetailsPage({super.key});
@@ -10,8 +12,34 @@ class TicketDetailsPage extends StatefulWidget {
 }
 
 class _TicketDetailsPageState extends State<TicketDetailsPage> {
+  getTicketDetails() async {
+    var url =
+        'https://whoscore-ticket-id.herokuapp.com/tickets/bet9ja/B911RQCQQARPZP-3357263/';
+    var response = await http.get(Uri.parse(url));
+    var ticketDetailsJson = jsonDecode(response.body);
+
+    List<TicketDetailsModel> ticketDetails = [];
+
+    for (var u in ticketDetailsJson) {
+      TicketDetailsModel ticketDetailsModel = TicketDetailsModel(
+          u['betId'],
+          u['totalOdds'],
+          u['totalStakes'],
+          u['ticketStatus'],
+          u['totalGames'],
+          u['gameDateTime'],
+          u['game'],
+          u['odd'],
+          u['betScore'],
+          u['gCheck'],
+          u['gameStatus']);
+      ticketDetails.add(ticketDetailsModel);
+    }
+    return ticketDetails;
+  }
+
   late String price = '500';
-    late String odds = '34.17';
+  late String odds = '34.17';
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -89,7 +117,7 @@ class _TicketDetailsPageState extends State<TicketDetailsPage> {
             SizedBox(
               height: 10,
             ),
-              Row(
+            Row(
               children: [
                 SizedBox(
                   width: 5,
@@ -111,9 +139,17 @@ class _TicketDetailsPageState extends State<TicketDetailsPage> {
             SizedBox(
               height: 10,
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TicketView(),
+            Container(
+              width: SizeConfig.screenWidth! * 1.05,
+              height: SizeConfig.screenHeight! * 1.14,
+              //  height: SizeConfig.screenHeight! * 0.3,
+              decoration: BoxDecoration(
+                border: Border.all(width: 2),
+              ),
+              // Padding(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: TicketView(),
+              // )
             )
           ],
         ),

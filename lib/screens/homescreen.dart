@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whoscore/screens/categorybar.dart';
+import 'package:whoscore/screens/coming_soon.dart';
 import 'package:whoscore/screens/ticketpage.dart';
 import 'package:whoscore/sizeconfig/size_config.dart';
 
@@ -56,7 +57,13 @@ class HomeScreen extends StatelessWidget {
                       thickness: 2,
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>  ComingSoonPage()),
+                        );
+                      },
                       child: const Text(
                         'Watch',
                         style: TextStyle(
