@@ -21,10 +21,15 @@ class _MatchViewState extends State<MatchView> {
 
   @override
   Widget build(BuildContext context) {
+    // List epl = [];
+    // List liliga = [];
+    // int index = 0;
     return Consumer<MatchScoreProvider>(
       builder: ((context, value, child) {
         final scores = value.matchscores;
-        //   final matches = scores[index];
+
+        final matches = scores;
+
         return Container(
           height: SizeConfig.screenHeight! * 0.65,
           width: SizeConfig.screenWidth,
@@ -33,78 +38,142 @@ class _MatchViewState extends State<MatchView> {
             itemCount: scores.length,
             itemBuilder: ((context, index) {
               final matches = scores[index];
-              if (matches.competition == "premier-league") {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Card(
-                    child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Row(
-                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                       crossAxisAlignment: CrossAxisAlignment.center,
+              // final matches = scores[index];
+              // if (matches.competition == "v-league") {
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  width: SizeConfig.screenWidth! * 0.9,
+                  height: SizeConfig.screenHeight! * 0.095,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Image(
+                        width: 40,
+                        height: 30,
+                        image: NetworkImage(
+                          matches.awayTeamLogo,
+                        ),
+                      ),
+                      Text(
+                        matches.awayTeam,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w700, fontSize: 11),
+                      ),
+                      Column(
                         children: [
-                          Image(
-                              width: 40,
-                              height: 30,
-                              image: NetworkImage(
-                                matches.awayTeamLogo,
-                              )),
+                          SizedBox(
+                            height: 10,
+                          ),
                           Text(
-                            matches.awayTeam,
+                            matches.currentMatchTime,
+                            style: TextStyle(
+                                fontWeight: FontWeight.w700, fontSize: 13),
                           ),
                           SizedBox(
-                            width: 10,
+                            height: 10,
                           ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(matches.currentMatchTime, style: TextStyle(fontWeight: FontWeight.w700),),
-                              Text(matches.gameScore, style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16),),
-                            ],
+                          Text(
+                            matches.gameScore,
+                            style: TextStyle(
+                                fontWeight: FontWeight.w700, fontSize: 12),
                           ),
-                           SizedBox(
-                            width: 12,
-                          ),
-                          Text(matches.homeTeam),
-                          Image(
-                              width: 40,
-                              height: 30,
-                              image: NetworkImage(
-                                matches.homeTeamLogo,
-                              )),
                         ],
                       ),
-                    ),
-                  ),
-                );
-              } else
-                return Text('Hi');
+                      Text(
+                        matches.homeTeam,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w700, fontSize: 11),
+                      ),
+                      Image(
+                        width: 40,
+                        height: 30,
+                        image: NetworkImage(
+                          matches.homeTeamLogo,
+                        ),
+                      ),
 
-              //   var matches = value.matchscores[index];
-              // return Card(
-              //   child: Row(
-              //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              //     children: [
-              //       Text(
-              //         matches.homeTeam,
-              //         style: TextStyle(fontSize: 12),
-              //       ),
-              //       Column(
-              //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              //         children: [
-              //           Text(matches.competition),
-              //           Text(matches.currentMatchTime),
-              //           Text(matches.gameScore),
-              //         ],
-              //       ),
-              //       Text(
-              //         matches.awayTeam,
-              //         style: TextStyle(fontSize: 12),
-              //       ),
-              //     ],
-              //   ),
-              // );
-            }),
+                      // Text(matches.homeTeam),
+                      //     Text(matches.currentMatchTime),
+                    ],
+                  ),
+                ),
+                // child: Card(
+                //   child: Padding(
+                //     padding: const EdgeInsets.all(20.0),
+                //     child: Row(
+                //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                //       crossAxisAlignment: CrossAxisAlignment.center,
+                //       children: [
+
+                //         Text(
+                //           matches.awayTeam,
+                //         ),
+                //         SizedBox(
+                //           width: 10,
+                //         ),
+                //         Column(
+                //           mainAxisAlignment: MainAxisAlignment.center,
+                //           children: [
+                //             Text(
+                //               matches.currentMatchTime,
+                //               style: TextStyle(fontWeight: FontWeight.w700),
+                //             ),
+                //             Text(
+                //               matches.gameScore,
+                //               style: TextStyle(
+                //                   fontWeight: FontWeight.w700, fontSize: 16),
+                //             ),
+                //           ],
+                //         ),
+                //         SizedBox(
+                //           width: 12,
+                //         ),
+                //         Text(matches.homeTeam),
+                //         Image(
+                //             width: 40,
+                //             height: 30,
+                //             image: NetworkImage(
+                //               matches.homeTeamLogo,
+                //             )),
+                //       ],
+                //     ),
+                //   ),
+                // ),
+              );
+            }
+                // else
+                //   return Text('Hi');
+
+                //   var matches = value.matchscores[index];
+                // return Card(
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                //     children: [
+                //       Text(
+                //         matches.homeTeam,
+                //         style: TextStyle(fontSize: 12),
+                //       ),
+                //       Column(
+                //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                //         children: [
+                //           Text(matches.competition),
+                //           Text(matches.currentMatchTime),
+                //           Text(matches.gameScore),
+                //         ],
+                //       ),
+                //       Text(
+                //         matches.awayTeam,
+                //         style: TextStyle(fontSize: 12),
+                //       ),
+                //     ],
+                //   ),
+                // );
+                //  }
+                ),
           ),
         );
       }),
