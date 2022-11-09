@@ -15,7 +15,9 @@ class MatchService {
             homeTeam: e['homeTeam'],
             currentMatchTime: e['currentMatchTime'],
             gameScore: e['gameScore'],
-            competition: e['competition']);
+            competition: e['competition'],
+            homeTeamLogo: e['homeTeamLogo'],
+            awayTeamLogo: e['awayTeamLogo']);
       }).toList();
       return scores;
     }

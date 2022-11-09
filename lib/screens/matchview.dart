@@ -21,122 +21,93 @@ class _MatchViewState extends State<MatchView> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<MatchScoreProvider>(builder: ((context, value, child) {
-      final scores = value.matchscores;
-      return SizedBox(
-        height: SizeConfig.screenHeight! * 0.65,
-        width: SizeConfig.screenWidth,
-        child: ListView.builder(
+    return Consumer<MatchScoreProvider>(
+      builder: ((context, value, child) {
+        final scores = value.matchscores;
+        //   final matches = scores[index];
+        return Container(
+          height: SizeConfig.screenHeight! * 0.65,
+          width: SizeConfig.screenWidth,
+          decoration: BoxDecoration(color: Colors.grey.shade200),
+          child: ListView.builder(
             itemCount: scores.length,
             itemBuilder: ((context, index) {
               final matches = scores[index];
-              //   var matches = value.matchscores[index];
-              return Card(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text(matches.homeTeam, style: TextStyle(fontSize: 12),),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text(matches.currentMatchTime),
-                        Text(matches.gameScore),
-                      ],
+              if (matches.competition == "premier-league") {
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Row(
+                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                       crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Image(
+                              width: 40,
+                              height: 30,
+                              image: NetworkImage(
+                                matches.awayTeamLogo,
+                              )),
+                          Text(
+                            matches.awayTeam,
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(matches.currentMatchTime, style: TextStyle(fontWeight: FontWeight.w700),),
+                              Text(matches.gameScore, style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16),),
+                            ],
+                          ),
+                           SizedBox(
+                            width: 12,
+                          ),
+                          Text(matches.homeTeam),
+                          Image(
+                              width: 40,
+                              height: 30,
+                              image: NetworkImage(
+                                matches.homeTeamLogo,
+                              )),
+                        ],
+                      ),
                     ),
-                    Text(matches.awayTeam, style: TextStyle(fontSize: 12),)
-                  ],
-                ),
-              );
-            })),
-      );
-    }));
+                  ),
+                );
+              } else
+                return Text('Hi');
+
+              //   var matches = value.matchscores[index];
+              // return Card(
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //     children: [
+              //       Text(
+              //         matches.homeTeam,
+              //         style: TextStyle(fontSize: 12),
+              //       ),
+              //       Column(
+              //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //         children: [
+              //           Text(matches.competition),
+              //           Text(matches.currentMatchTime),
+              //           Text(matches.gameScore),
+              //         ],
+              //       ),
+              //       Text(
+              //         matches.awayTeam,
+              //         style: TextStyle(fontSize: 12),
+              //       ),
+              //     ],
+              //   ),
+              // );
+            }),
+          ),
+        );
+      }),
+    );
   }
 }
-  //   return SizedBox(
-  //       height: SizeConfig.screenHeight! * 0.65,
-  //       width: SizeConfig.screenWidth,
-  //       child: Card(
-  //         child: FutureBuilder(
-  //           future: getScores(),
-  //           builder: ((context, snapshot) {
-  //             if (snapshot.data == null) {
-  //               return const Center(
-  //                 child: Text('Loading'),
-  //               );
-  //             } else {
-  //               var data = (snapshot.data as List<MatchScoreModel>).toList();
-  //               return ListView.builder(
-  //                 itemCount: data.length,
-  //                 itemBuilder: ((context, index) {
-  //                   return Padding(
-  //                     padding: const EdgeInsets.all(5.0),
-  //                     child: Card(
-  //                       shadowColor: Colors.greenAccent,
-  //                       color: Colors.grey.shade100,
-  //                       child: Padding(
-  //                         padding: const EdgeInsets.only(
-  //                             right: 10, left: 10, top: 10, bottom: 10),
-  //                         child: Row(
-  //                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-  //                           children: [
-  //                             Column(
-  //                               children: [
-  //                                 Image.asset(
-  //                                   'lib/assets/images/barcelona.png',
-  //                                   height: 30,
-  //                                   width: 20,
-  //                                 ),
-  //                                 Text(
-  //                                   data[index].awayTeam,
-  //                                   style: TextStyle(
-  //                                     fontSize: 12,
-  //                                   ),
-  //                                 ),
-  //                               ],
-  //                             ),
-  //                             Column(
-  //                               children: [
-  //                                 Text(
-  //                                   data[index].currentMatchTime,
-  //                                   style: TextStyle(
-  //                                       fontSize: 12,
-  //                                       fontWeight: FontWeight.w700),
-  //                                 ),
-  //                                 SizedBox(
-  //                                   height: 12,
-  //                                 ),
-  //                                 Text(
-  //                                   data[index].gameScore,
-  //                                   style: TextStyle(
-  //                                       fontSize: 13,
-  //                                       fontWeight: FontWeight.w600),
-  //                                 ),
-  //                               ],
-  //                             ),
-  //                             Column(
-  //                               children: [
-  //                                 Image.asset(
-  //                                   'lib/assets/images/chelsea.png',
-  //                                   height: 30,
-  //                                   width: 20,
-  //                                 ),
-  //                                 Text(
-  //                                   data[index].homeTeam,
-  //                                   style: TextStyle(
-  //                                     fontSize: 12,
-  //                                   ),
-  //                                 ),
-  //                               ],
-  //                             ),
-  //                           ],
-  //                         ),
-  //                       ),
-  //                     ),
-  //                   );
-  //                 }),
-  //               );
-  //             }
-  //           }),
-  //         ),
-  //       ));
-  // }
