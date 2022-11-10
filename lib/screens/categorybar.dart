@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:whoscore/screens/betscreen.dart';
-import 'package:whoscore/screens/dateview.dart';
+import 'package:whoscore/screens/dateview/date_container.dart';
+import 'package:whoscore/screens/dateview/dateview.dart';
 import 'package:whoscore/screens/matchview.dart';
 import 'package:whoscore/screens/sportscategory.dart';
 import 'package:whoscore/sizeconfig/size_config.dart';
@@ -63,7 +64,7 @@ class _CategoryBarState extends State<CategoryBar> {
                         SizedBox(
                           height: 5,
                         ),
-                        DateView(),
+                        DateContainer(),
                         SizedBox(
                           height: 5,
                         ),
